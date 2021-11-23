@@ -1,12 +1,18 @@
+'''
+Задание 1-ой недели курса:  начальная версия Telegram бота
+----------------------------------------------------------
+Код создан пошагово по видеолекциям Михаила Корнеева 
+(я пока не стал убирать строки с "print()", так как в дальнейшем код будет дополнительно модифицироваться и
+усложняться, насколько я понял)
+'''
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import settings
 
-logging.basicConfig(filename='bot.log', level=logging.INFO)  # levels: debag, INFO, warning, error...
+logging.basicConfig(filename='bot.log', level=logging.INFO)  
 
 def greet_user(update, context):
     print("Вызван /start") 
-    #print("update:\n",update)  
     update.message.reply_text('Привет, пользователь! Ты вызвал команду /start')
 
 def talk_to_me(update, context):
@@ -23,7 +29,7 @@ def main():
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
     
     # Командуем боту начать ходить в Telegram за сообщениями
-    logging.info("Бот стартовал")   # можно добавить дату и время
+    logging.info("Бот стартовал")   # to do: добавить дату и время в логи
     mybot.start_polling()
     # Запускаем бота, он будет работать, пока мы его не остановим принудительно
     mybot.idle()
